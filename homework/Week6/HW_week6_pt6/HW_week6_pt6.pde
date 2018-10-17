@@ -17,18 +17,12 @@
 //  you could control the color based on the mouse distance to each ball by using 
 //  the dist() function and map().
 
-//Ball myBall1;
-//Ball myBall2;
-//Ball myBall3;
 
-Ball[] ballArray = new Ball[3];
+Ball[] ballArray = new Ball[55];
 
 void setup() {
   size(800, 800);
 
-  //myBall1 = new Ball();
-  //myBall2 = new Ball();
-  //myBall3 = new Ball();
 
   for (int i = 0; i < ballArray.length; i++) {
     ballArray[i] = new Ball();
@@ -37,14 +31,7 @@ void setup() {
 
 void draw() {
   background(200);
-  //  myBall1.update();
-  //  myBall1.display();
-
-  //  myBall2.update();
-  //  myBall2.display();
-
-  //  myBall3.update();
-  //  myBall3.display();
+  
 
   for (int i = 0; i < ballArray.length; i++) {
     ballArray[i].update();
@@ -56,7 +43,8 @@ class Ball {
   float x, y;
   float dx, dy;
   float s;
-int i;
+  int i;
+  color fillcolor = color(255);
 
 
 
@@ -68,14 +56,16 @@ int i;
     dx = random(-5, 5);
     dy = random(-5, 5);
     s = random(30, 80);
-    
+    fill (fillcolor);
   }
 
   void display() {
-for (int i = 0; i < ballArray.length; i++) {
-     float d= dist (mouseX, mouseY, x, y);
-    fill (map(d, 0, 100, 255, 0));
-  }
+    for (int i = 0; i < ballArray.length; i++) {
+      float d= dist (mouseX, mouseY, x, y);   //dist(x1,y1,x2,y2)
+      fillcolor = color(map(d, 0, 100, 255, 0), map(d, 0, 200, 100, 0),map(d, 0, 210, 255, 0));
+
+      fill (fillcolor);
+    }
     ellipse(x, y, s, s);
   }
 
